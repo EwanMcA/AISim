@@ -2,13 +2,6 @@
 
 #include "stdafx.h"
 
-#define BOARD_DELIM "|"
-#define BOARD_DISCOVERED "*"
-#define BOARD_END "e"
-#define BOARD_START "s"
-#define BOARD_WALL "O"
-#define BOARD_UNDISCOVERED "."
-
 struct Node {
     int x;
     int y;
@@ -18,8 +11,8 @@ struct Node {
 class Board
 {
 public:
-    Board();
-    ~Board();
+    Board() {}
+    ~Board() {}
 
     void load(char* fn);
     void display();
@@ -36,7 +29,16 @@ public:
     bool isWall        (int x, int y) { return vertices[x][y] == BOARD_WALL; };
 
 private:
-    std::vector<std::vector<std::string>> vertices;
+    std::vector<std::vector<char>> vertices;
     Node start;
+
+    std::vector<char> splitString(std::string input_string);
+
+    static const char BOARD_DELIM = '|';
+    static const char BOARD_DISCOVERED = '*';
+    static const char BOARD_UNDISCOVERED = '.';
+    static const char BOARD_END = 'e';
+    static const char BOARD_START = 's';
+    static const char BOARD_WALL = 'O';
 };
 

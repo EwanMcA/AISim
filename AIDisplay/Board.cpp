@@ -6,38 +6,6 @@ using std::endl;
 
 static const std::chrono::duration<double> FRAME(0.05);
 
-std::vector<std::string> split_string(std::string input_string) {
-    std::vector<std::string> splits;
-    char separator = ' ';
-
-    size_t i = 0;
-    size_t pos = input_string.find(separator);
-
-    while (pos != std::string::npos) {
-        if (input_string.substr(i, pos - i) != BOARD_DELIM) {
-            splits.push_back(input_string.substr(i, pos - i));
-        }
-
-        i = pos + 1;
-        pos = input_string.find(separator, i);
-    }
-
-    if (input_string.substr(i, std::min(pos, input_string.length()) - i + 1) != BOARD_DELIM) {
-        splits.push_back(input_string.substr(i, std::min(pos, input_string.length()) - i + 1));
-    }
-
-    return splits;
-}
-
-Board::Board()
-{
-}
-
-
-Board::~Board()
-{
-}
-
 // Load the board from file and set the starting position ({0, 0} as default)
 void Board::load(char* fn)
 {
@@ -47,7 +15,7 @@ void Board::load(char* fn)
     if (fs.is_open()) {
         while (std::getline(fs, line)) {
             cout << line << endl;
-            vertices.push_back(split_string(line));
+            vertices.push_back(splitString(line));
         }
         fs.close();
     }
@@ -76,7 +44,7 @@ void Board::display() {
     for (auto & v : vertices) {
         ss << "\t";
         for (auto & s : v) {
-            if (s == ".")
+            if (s == '.')
                 ss << "  ";
             else
                 ss << s << " ";
@@ -96,9 +64,21 @@ void Board::display() {
 
 void Board::clear() {
     for (auto & v : vertices) {
-        for (auto & s : v) {
-            if (s == BOARD_DISCOVERED)
-                s = BOARD_UNDISCOVERED;
+        for (auto & c : v) {
+            if (c == BOARD_DISCOVERED)
+                c = BOARD_UNDISCOVERED;
         }
     }
+}
+
+std::vector<char> Board::splitString(std::string input_string) {
+    std::vector<char> splits;
+    const char separator = ' ';
+
+    for (char& c : input_string) {
+        if (c != separator && c != BOARD_DELIM)
+            splits.push_back(c);
+    }
+
+    return splits;
 }
