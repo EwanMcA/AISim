@@ -51,7 +51,7 @@ void Board::display() {
         }
         ss << endl;
     }
-    ss << endl << endl;
+    for (int i=0; i < 8; ++i) ss << endl;
     cout << ss.str();
 
     // Quick hack for frame rate

@@ -11,15 +11,19 @@ int main(int argc, char* argv[])
 {
     // Load the board
     Board origBoard;
+    cout << "Map:" << endl;
     origBoard.load(argv[1]);
+    cout << endl;
 
     // Run the game
     while(true) {
         std::forward_list<Node> nodeGraph;
         char choice;
 
-        cout << "Enter [1] for Breadth First Search" << endl
-             << "Enter [2] for Depth First Search" << endl;
+        cout << "Enter:" << endl
+             << "[1] for Breadth First Search" << endl
+             << "[2] for Depth First Search" << endl
+             << "[any other key] to quit" << endl;
         cin >> choice;
         
         Algorithm* alg;
@@ -38,9 +42,9 @@ int main(int argc, char* argv[])
         alg->traceback();
 
         std::string line;
-        cout << "Enter [q] to quit or [any other key] to run again" << endl;
+        cout << "Enter [Y/y] to run again or [any other key] to quit" << endl;
         cin >> line;
-        if (line == "q")
+        if (line != "Y" && line != "y")
             return 0;
         origBoard.clear();
     }
