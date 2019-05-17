@@ -9,7 +9,7 @@ public:
         : Algorithm(board, nodeGraph) {}
     ~Dfs() {};
 
-    void run();
+    unsigned int run();
 
 private:
     bool recurse(Node& n);

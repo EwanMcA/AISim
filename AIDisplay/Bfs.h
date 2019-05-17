@@ -9,6 +9,6 @@ public:
         : Algorithm(board, nodeGraph) {}
     ~Bfs() {};
 
-    void run();
+    unsigned int run();
 };
 

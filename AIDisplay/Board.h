@@ -6,6 +6,7 @@ struct Node {
     int x;
     int y;
     Node* parent;
+    double priority;
 };
 
 class Board
@@ -17,6 +18,7 @@ public:
     void load(char* fn);
     void display();
     void clear();
+    void set_end();
     
     void discover(int x, int y) { if (!isStart(x, y)) vertices[x][y] = BOARD_DISCOVERED; }
 
@@ -28,9 +30,10 @@ public:
     bool isUndiscovered(int x, int y) { return vertices[x][y] == BOARD_UNDISCOVERED; };
     bool isWall        (int x, int y) { return vertices[x][y] == BOARD_WALL; };
 
+    std::pair<int, int> end;
+
 private:
     std::vector<std::vector<char>> vertices;
-    Node start;
 
     std::vector<char> splitString(std::string input_string);
 

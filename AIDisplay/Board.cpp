@@ -23,7 +23,18 @@ void Board::load(char* fn)
         cout << "failed to open file: " << fn << endl;
     }
 
-    start = findStart();
+    set_end();
+}
+
+void Board::set_end()
+{
+    for (int i = 0; i < vertices.size(); ++i) {
+        for (int j = 0; j < vertices[i].size(); ++j) {
+            if (vertices[i][j] == BOARD_END) {
+                end = { i, j };
+            }
+        }
+    }
 }
 
 Node Board::findStart() 
@@ -31,11 +42,12 @@ Node Board::findStart()
     // Find the starting point (start at 0,0 if not specified).
     for (int i = 0; i < vertices.size(); ++i) {
         for (int j = 0; j < vertices[i].size(); ++j) {
-            if (vertices[i][j] == BOARD_START)
-                return { i, j };
+            if (vertices[i][j] == BOARD_START) {
+                return { i, j, nullptr, 0 };
+            }
         }
     }
-    return { 0, 0 };
+    return { 0, 0, nullptr, 0 };
 }
 
 // Print the board

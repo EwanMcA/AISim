@@ -18,12 +18,13 @@ void add_children(const size_t& size, Node& n, std::queue<Node>& q) {
 }
 
 // Breadth first search (iterative)
-void Bfs::run()
+unsigned int Bfs::run()
 {
-    std::queue<Node> q;
+    std::queue <Node> q;
     nodeGraph.emplace_front(board.findStart());
     q.push(nodeGraph.front());
     add_children(board.size(), nodeGraph.front(), q);
+    int searched(0);
 
     while (!q.empty()) {
         Node n(q.front());
@@ -34,13 +35,14 @@ void Bfs::run()
         }
         else if (board.isEnd(n.x, n.y)) {
             nodeGraph.emplace_front(n);
-            return;
+            return searched;
         }
         else if (!board.isWall(n.x, n.y) && !board.isStart(n.x, n.y)) {
             nodeGraph.emplace_front(n);
             add_children(board.size(), nodeGraph.front(), q);
             board.discover(n.x, n.y);
             board.display();
+            searched++;
         }
     }
 }

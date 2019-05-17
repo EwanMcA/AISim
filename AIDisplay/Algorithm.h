@@ -10,7 +10,7 @@ public:
 
     virtual ~Algorithm() {};
 
-    virtual void run() = 0;
+    virtual unsigned int run() = 0;
     virtual unsigned int traceback();
 
     std::forward_list<Node>& nodeGraph;

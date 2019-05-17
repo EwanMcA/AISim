@@ -33,7 +33,8 @@ bool Dfs::recurse(Node& n) {
     return false;
 }
 
-void Dfs::run() {
+unsigned int Dfs::run() {
     nodeGraph.emplace_front(board.findStart());
     recurse(nodeGraph.front());
+    return 0;
 }

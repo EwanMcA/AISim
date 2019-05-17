@@ -1,7 +1,9 @@
 #include "stdafx.h"
+#include "AStar.h"
+#include "Bfs.h"
 #include "Board.h"
 #include "Dfs.h"
-#include "Bfs.h"
+#include "Ucs.h"
 
 using std::cout;
 using std::cin;
@@ -23,29 +25,47 @@ int main(int argc, char* argv[])
         cout << "Enter:" << endl
              << "[1] for Breadth First Search" << endl
              << "[2] for Depth First Search" << endl
-             << "[any other key] to quit" << endl;
+             << "[3] for Uniform Cost Search" << endl
+             << "[4] for A* Search" << endl
+             << "[any other key] to quit" << endl << endl;
         cin >> choice;
         
-        Algorithm* alg;
+        std::unique_ptr<Algorithm> alg;
         switch (choice) {
             case '1':
-                alg = new Bfs(origBoard, nodeGraph);
+                alg = std::make_unique<Bfs>(origBoard, nodeGraph);
                 break;
             case '2':
-                alg = new Dfs(origBoard, nodeGraph);
+                alg = std::make_unique<Dfs>(origBoard, nodeGraph);
+                break;
+            case '3':
+                alg = std::make_unique<Ucs>(origBoard, nodeGraph);
+                break;
+            case '4':
+                alg = std::make_unique<AStar>(origBoard, nodeGraph);
                 break;
             default:
                 return 1;
         }
 
-        alg->run();
-        alg->traceback();
+        while (true) {
+            unsigned int searched = alg->run();
+            alg->traceback();
+            cout << "Nodes searched: " << searched << endl << endl;
 
-        std::string line;
-        cout << "Enter [Y/y] to run again or [any other key] to quit" << endl;
-        cin >> line;
-        if (line != "Y" && line != "y")
-            return 0;
-        origBoard.clear();
+            std::string line;
+            cout << "Enter:" << endl
+                << "[1] to run again" << endl
+                << "[2] to choose another algorithm" << endl
+                << "[any other key] to quit" << endl << endl;
+            cin >> line;
+
+            origBoard.clear();
+
+            if (line == "2")
+                break;
+            else if (line != "1")
+                return 0;
+        }
     }
 }
