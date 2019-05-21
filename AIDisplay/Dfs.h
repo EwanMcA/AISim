@@ -12,6 +12,6 @@ public:
     unsigned int run();
 
 private:
-    bool recurse(Node& n);
+    unsigned int recurse(Node& n);
 };
 

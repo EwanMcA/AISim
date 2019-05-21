@@ -1,14 +1,17 @@
 #pragma once
 #include "stdafx.h"
-#include "Algorithm.h"
+#include "Ucs.h"
 
-class Bfs : public Algorithm
+class Bfs : public Ucs
 {
 public:
     Bfs(Board& board, std::forward_list<Node>& nodeGraph)
-        : Algorithm(board, nodeGraph) {}
+        : Ucs(board, nodeGraph), stablePrior(0) {}
     ~Bfs() {};
 
-    unsigned int run();
+    double get_priority(Board& board, Node& parent, int x, int y) { return ++stablePrior; }
+    
+private:
+    int stablePrior;
 };
 

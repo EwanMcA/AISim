@@ -4,6 +4,7 @@
 using std::cout;
 using std::endl;
 
+typedef std::chrono::high_resolution_clock HRClock;
 static const std::chrono::duration<double> FRAME(0.05);
 
 // Load the board from file and set the starting position ({0, 0} as default)
@@ -52,7 +53,19 @@ Node Board::findStart()
 
 // Print the board
 void Board::display() {
+    
+    // Quick hack for frame rate
+    static HRClock::time_point last;
+    if (HRClock::now() - last < FRAME) {
+        std::this_thread::sleep_for(FRAME - (HRClock::now() - last));
+    }
+    last = HRClock::now();
+
     std::stringstream ss;
+
+    // clear the screen
+    for (int i = 0; i < 16; ++i) ss << endl;
+
     for (auto & v : vertices) {
         ss << "\t";
         for (auto & s : v) {
@@ -63,15 +76,8 @@ void Board::display() {
         }
         ss << endl;
     }
-    for (int i=0; i < 8; ++i) ss << endl;
-    cout << ss.str();
 
-    // Quick hack for frame rate
-    static std::chrono::high_resolution_clock::time_point last;
-    if (std::chrono::high_resolution_clock::now() - last < FRAME) {
-        std::this_thread::sleep_for(FRAME - (std::chrono::high_resolution_clock::now() - last));
-    }
-    last = std::chrono::high_resolution_clock::now();
+    cout << ss.str();
 }
 
 void Board::clear() {

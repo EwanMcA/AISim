@@ -21,6 +21,7 @@ public:
     void set_end();
     
     void discover(int x, int y) { if (!isStart(x, y)) vertices[x][y] = BOARD_DISCOVERED; }
+    //void blah(int x, int y, Node n) { vertices[x][y] = (int)n.priority - 10 + '0';  }
 
     Node findStart();
     size_t size() { return vertices.size(); }

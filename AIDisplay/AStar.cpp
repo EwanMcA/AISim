@@ -2,6 +2,7 @@
 
 double AStar::get_priority(Board& board, Node& parent, int x, int y)
 {
-        return parent.priority + 1.0 + sqrt(pow(board.end.first - x, 2.0) + pow(board.end.second - y, 2.0));
+    int dx = abs(board.end.first - x);
+    int dy = abs(board.end.second - y);
+    return parent.priority + 1.0 + (dx + dy - std::min(dx, dy)) * hScale;
 }
-

@@ -26,7 +26,8 @@ int main(int argc, char* argv[])
              << "[1] for Breadth First Search" << endl
              << "[2] for Depth First Search" << endl
              << "[3] for Uniform Cost Search" << endl
-             << "[4] for A* Search" << endl
+             << "[4] for A* Search - Admissible (shortest path guaranteed)" << endl
+             << "[5] for A* Search - Aggressive" << endl
              << "[any other key] to quit" << endl << endl;
         cin >> choice;
         
@@ -42,7 +43,10 @@ int main(int argc, char* argv[])
                 alg = std::make_unique<Ucs>(origBoard, nodeGraph);
                 break;
             case '4':
-                alg = std::make_unique<AStar>(origBoard, nodeGraph);
+                alg = std::make_unique<AStar>(origBoard, nodeGraph, 1);
+                break;
+            case '5':
+                alg = std::make_unique<AStar>(origBoard, nodeGraph, 2);
                 break;
             default:
                 return 1;
@@ -50,7 +54,7 @@ int main(int argc, char* argv[])
 
         while (true) {
             unsigned int searched = alg->run();
-            alg->traceback();
+            std::cout << "Path length: " << alg->traceback() << endl;
             cout << "Nodes searched: " << searched << endl << endl;
 
             std::string line;

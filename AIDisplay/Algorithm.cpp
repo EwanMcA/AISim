@@ -3,7 +3,7 @@
 
 unsigned int Algorithm::traceback()
 {
-    unsigned int steps(0);
+    unsigned int steps(1);
     Node& n(*nodeGraph.front().parent);
     board.clear();
     while (n.parent != nullptr) {
@@ -12,7 +12,7 @@ unsigned int Algorithm::traceback()
         ++steps;
     }
     board.display();
-    std::cout << "Path length: " << steps << std::endl;
+    std::cout << std::endl;
 
     return steps;
 }
