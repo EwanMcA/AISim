@@ -9,13 +9,13 @@ double IterativeSearch::get_priority(const Node& parent, int x, int y) {
 void IterativeSearch::add_children(const Node& n) 
 {
     for (int i = -1; i < 2; i += 2) {
-        if (board.isOnBoard(n.x + i, n.y))
+        if (board.is_on_board(n.x + i, n.y))
             pq.push(Node(n.x + i, n.y, &n, get_priority(n, n.x + i, n.y)));
-        if (board.isOnBoard(n.x, n.y + i))
+        if (board.is_on_board(n.x, n.y + i))
             pq.push(Node(n.x, n.y + i, &n, get_priority(n, n.x, n.y + i)));
-        if (board.isOnBoard(n.x + i, n.y - i))
+        if (board.is_on_board(n.x + i, n.y - i))
             pq.push(Node(n.x + i, n.y - i, &n, get_priority(n, n.x + i, n.y - i)));
-        if (board.isOnBoard(n.x + i, n.y + i))
+        if (board.is_on_board(n.x + i, n.y + i))
             pq.push(Node(n.x + i, n.y + i, &n, get_priority(n, n.x + i, n.y + i)));
     }
 }
@@ -33,14 +33,14 @@ unsigned int IterativeSearch::run()
         Node n(pq.top());
         pq.pop();
 
-        if (board.isDiscovered(n.x, n.y)) {
+        if (board.is_discovered(n.x, n.y)) {
             continue;
         }
-        else if (board.isEnd(n.x, n.y)) {
+        else if (board.is_end(n.x, n.y)) {
             nodeGraph.emplace_front(n);
             return searched;
         }
-        else if (!board.isWall(n.x, n.y) && !board.isStart(n.x, n.y)) {
+        else if (!board.is_wall(n.x, n.y) && !board.is_start(n.x, n.y)) {
             n.priority = n.parent->priority + 1;
             nodeGraph.emplace_front(n);
             add_children(nodeGraph.front());

@@ -47,7 +47,7 @@ public:
         int - X position to discover.
         int - Y position to discover.
     ***********************************************************************************/
-    void discover(int x, int y) { if (!isStart(x, y)) vertices[x][y] = BOARD_DISCOVERED; }
+    void discover(int x, int y) { if (!is_start(x, y)) vertices[x][y] = BOARD_DISCOVERED; }
     
     /**********************************************************************************
     Returns the starting point as a Node, ({0, 0} is default if start can't be found).
@@ -66,13 +66,13 @@ public:
         int - Y position on the board.
 
         Returns:
-            bool - True if the vertex is Discovered/End/Start/Undiscovered/Wall.
+            bool - True if the vertex is respectively Discovered/End/Start/Undiscovered/Wall.
     ***********************************************************************************/
-    bool isDiscovered  (int x, int y) { return vertices[x][y] == BOARD_DISCOVERED; };
-    bool isEnd         (int x, int y) { return vertices[x][y] == BOARD_END; };
-    bool isStart       (int x, int y) { return vertices[x][y] == BOARD_START; };
-    bool isUndiscovered(int x, int y) { return vertices[x][y] == BOARD_UNDISCOVERED; };
-    bool isWall        (int x, int y) { return vertices[x][y] == BOARD_WALL; };
+    bool is_discovered  (int x, int y) { return vertices[x][y] == BOARD_DISCOVERED; };
+    bool is_end         (int x, int y) { return vertices[x][y] == BOARD_END; };
+    bool is_start       (int x, int y) { return vertices[x][y] == BOARD_START; };
+    bool is_undiscovered(int x, int y) { return vertices[x][y] == BOARD_UNDISCOVERED; };
+    bool is_wall        (int x, int y) { return vertices[x][y] == BOARD_WALL; };
 
     /**********************************************************************************
     Determines whether the given position is within the boundaries of the board.
@@ -83,7 +83,7 @@ public:
         Returns:
             bool - True if the given position is within the board, false otherwise.
     ***********************************************************************************/
-    bool isOnBoard(int x, int y) 
+    bool is_on_board(int x, int y) 
     { 
         return x >= 0 && y >= 0 && x < vertices.size() && y < vertices[0].size();
     }
@@ -95,7 +95,7 @@ private:
     std::vector<std::vector<char>> vertices;
 
     // Splits the given string into a vector of meaningful chars
-    std::vector<char> splitString(std::string input_string);
+    std::vector<char> split_string(std::string input_string);
 
     static const char BOARD_DELIM = '|';
     static const char BOARD_DISCOVERED = '*';

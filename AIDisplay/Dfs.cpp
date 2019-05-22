@@ -3,10 +3,10 @@
 // The number of nodes searched doubles as a flag to signify whether a nested call
 // resulted in the end-point being found.
 unsigned int Dfs::recurse(Node& n) {
-    if (board.isDiscovered(n.x, n.y) || board.isWall(n.x, n.y)) {
+    if (board.is_discovered(n.x, n.y) || board.is_wall(n.x, n.y)) {
         return 0;
     }
-    else if (board.isEnd(n.x, n.y)) {
+    else if (board.is_end(n.x, n.y)) {
         return 1;
     }
     board.discover(n.x, n.y);

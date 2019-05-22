@@ -15,7 +15,7 @@ void Board::load(char* fn)
     if (fs.is_open()) {
         while (std::getline(fs, line)) {
             cout << line << endl;
-            vertices.push_back(splitString(line));
+            vertices.push_back(split_string(line));
         }
         fs.close();
     }
@@ -86,7 +86,7 @@ void Board::clear() {
     }
 }
 
-std::vector<char> Board::splitString(std::string input_string) {
+std::vector<char> Board::split_string(std::string input_string) {
     std::vector<char> splits;
     const char separator = ' ';
 
