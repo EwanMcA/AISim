@@ -10,7 +10,20 @@ public:
 
     virtual ~Algorithm() {};
 
+    /**********************************************************************************
+    Runs the algorithm.
+    
+        Returns:
+            unsigned int - The number of nodes searched.
+    ***********************************************************************************/
     virtual unsigned int run() = 0;
+    
+    /**********************************************************************************
+    Displays the game board with the calculated path highlighted.
+
+        Returns:
+            unsigned int - The number of steps in the path.
+    ***********************************************************************************/
     virtual unsigned int traceback();
 
     std::forward_list<Node>& nodeGraph;

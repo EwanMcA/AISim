@@ -7,7 +7,6 @@ using std::endl;
 typedef std::chrono::high_resolution_clock HRClock;
 static const std::chrono::duration<double> FRAME(0.05);
 
-// Load the board from file and set the starting position ({0, 0} as default)
 void Board::load(char* fn)
 {
     std::string line;
@@ -38,9 +37,8 @@ void Board::set_end()
     }
 }
 
-Node Board::findStart() 
+Node Board::find_start() 
 {
-    // Find the starting point (start at 0,0 if not specified).
     for (int i = 0; i < vertices.size(); ++i) {
         for (int j = 0; j < vertices[i].size(); ++j) {
             if (vertices[i][j] == BOARD_START) {
@@ -51,7 +49,6 @@ Node Board::findStart()
     return { 0, 0, nullptr, 0 };
 }
 
-// Print the board
 void Board::display() {
     
     // Quick hack for frame rate
@@ -63,7 +60,7 @@ void Board::display() {
 
     std::stringstream ss;
 
-    // clear the screen
+    // clear the terminal
     for (int i = 0; i < 16; ++i) ss << endl;
 
     for (auto & v : vertices) {

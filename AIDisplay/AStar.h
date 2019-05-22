@@ -1,15 +1,16 @@
 #pragma once
 #include "stdafx.h"
-#include "Ucs.h"
+#include "IterativeSearch.h"
 
-class AStar : public Ucs
+class AStar : public IterativeSearch
 {
 public:
     AStar(Board& board, std::forward_list<Node>& nodeGraph, int hScale)
-        : Ucs(board, nodeGraph), hScale(hScale) {}
+        : IterativeSearch(board, nodeGraph), hScale(hScale) {}
     ~AStar() {};
 
-    double get_priority(Board& board, Node& parent, int x, int y);
+    // See IterativeSearch::get_priority(...)
+    double get_priority(const Node& parent, int x, int y);
 
     private:
         // Scale up the A* heuristic, causing an aggressive preference for 

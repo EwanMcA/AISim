@@ -1,5 +1,7 @@
 #include "Dfs.h"
 
+// The number of nodes searched doubles as a flag to signify whether a nested call
+// resulted in the end-point being found.
 unsigned int Dfs::recurse(Node& n) {
     if (board.isDiscovered(n.x, n.y) || board.isWall(n.x, n.y)) {
         return 0;
@@ -35,8 +37,8 @@ unsigned int Dfs::recurse(Node& n) {
     return 0;
 }
 
+// Subtract 1 from the total nodes searched, so that the start node isn't counted
 unsigned int Dfs::run() {
-    nodeGraph.emplace_front(board.findStart());
+    nodeGraph.emplace_front(board.find_start());
     return recurse(nodeGraph.front()) - 1;
-  
 }

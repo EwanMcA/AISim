@@ -1,17 +1,20 @@
 #pragma once
 #include "stdafx.h"
-#include "Ucs.h"
+#include "IterativeSearch.h"
 
-class Bfs : public Ucs
+class Bfs : public IterativeSearch
 {
 public:
     Bfs(Board& board, std::forward_list<Node>& nodeGraph)
-        : Ucs(board, nodeGraph), stablePrior(0) {}
+        : IterativeSearch(board, nodeGraph), stablePrior(0) {}
     ~Bfs() {};
-
-    double get_priority(Board& board, Node& parent, int x, int y) { return ++stablePrior; }
+    
+    // See IterativeSearch::get_priority(...)
+    double get_priority(const Node& parent, int x, int y);
     
 private:
+
+    // Counter is used to sort nodes by insertion order (stable queue).
     int stablePrior;
 };
 
