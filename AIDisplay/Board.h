@@ -114,7 +114,7 @@ private:
     static const char BOARD_BOTTOM_LEFT = (char)192;
     static const char BOARD_BOTTOM_RIGHT = (char)217;
 #else
-    static const char BOARD_DISPLAY_UNDISCOVERED = BOARD_DISCOVERED;
+    static const char BOARD_DISPLAY_UNDISCOVERED = BOARD_UNDISCOVERED;
     static const char BOARD_DISPLAY_WALL = 'O';
     static const char BOARD_HZ = '-';
     static const char BOARD_TOP_LEFT = '/';
