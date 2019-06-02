@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Dfs.h"
 
 // The number of nodes searched doubles as a flag to signify whether a nested call
@@ -39,6 +40,6 @@ unsigned int Dfs::recurse(Node& n) {
 
 // Subtract 1 from the total nodes searched, so that the start node isn't counted
 unsigned int Dfs::run() {
-    nodeGraph.emplace_front(board.find_start());
+    nodeGraph.emplace_front(Node{ board.start.first, board.start.second, nullptr, 0 });
     return recurse(nodeGraph.front()) - 1;
 }

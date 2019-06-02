@@ -1,5 +1,5 @@
 #pragma once
-#include "stdafx.h"
+#include "pch.h"
 #include "IterativeSearch.h"
 
 class Bfs : public IterativeSearch

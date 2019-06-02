@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "IterativeSearch.h"
 
 // In the base case of UCS the priority is equal to the cost to reach the given position
@@ -24,7 +25,7 @@ void IterativeSearch::add_children(const Node& n)
 unsigned int IterativeSearch::run()
 {
     pq = std::priority_queue<Node, std::deque<Node>, NodePriority>();
-    nodeGraph.emplace_front(board.find_start());
+    nodeGraph.emplace_front(Node{ board.start.first, board.start.second, nullptr, 0 });
     pq.push(nodeGraph.front());
     add_children(nodeGraph.front());
     int searched(0);

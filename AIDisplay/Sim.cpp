@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "pch.h"
 #include "AStar.h"
 #include "Bfs.h"
 #include "Board.h"
@@ -71,9 +71,16 @@ int main(int argc, char* argv[])
 {
     // Load the board
     Board origBoard;
-    cout << "Map:" << endl;
-    origBoard.load(argv[1]);
-    cout << endl;
+
+    std::string line;
+    do {
+        cout << "Enter a map file (or hit [enter] for example map):" << endl;
+        getline(cin, line);
+        if (line.empty())
+            line = "example.in";
+    } while(!origBoard.load(line.c_str()));
+    
+    cout << "Map:" << endl << endl;;
 
     // Run the game
     while (run(origBoard));

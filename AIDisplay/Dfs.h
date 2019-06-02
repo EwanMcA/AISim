@@ -1,5 +1,5 @@
 #pragma once
-#include "stdafx.h"
+#include "pch.h"
 #include "Algorithm.h"
 
 class Dfs : public Algorithm

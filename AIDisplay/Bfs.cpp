@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Bfs.h"
 
 // In this case the priority is determined with a simple counter, to replicate a 
