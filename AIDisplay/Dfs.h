@@ -1,4 +1,6 @@
-#pragma once
+#ifndef DFS_H
+#define DFS_H
+
 #include "pch.h"
 #include "Algorithm.h"
 
@@ -28,3 +30,4 @@ private:
     unsigned int recurse(Node& n);
 };
 
+#endif // DFS_H

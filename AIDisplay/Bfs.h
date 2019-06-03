@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BFS_H
+#define BFS_H
+
 #include "pch.h"
 #include "IterativeSearch.h"
 
@@ -18,3 +20,4 @@ private:
     int stablePrior;
 };
 
+#endif // BFS_H

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef ASTAR_H
+#define ASTAR_H
+
 #include "pch.h"
 #include "IterativeSearch.h"
 
@@ -17,3 +19,5 @@ public:
         // nodes closer to the end-point.
         int hScale;
 };
+
+#endif // ASTAR_H

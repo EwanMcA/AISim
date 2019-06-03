@@ -1,4 +1,6 @@
-#pragma once
+#ifndef ALGORITHM_H
+#define ALGORITHM_H
+
 #include "board.h"
 
 class Algorithm
@@ -30,3 +32,4 @@ public:
     Board& board;
 };
 
+#endif // ALGORITHM_H

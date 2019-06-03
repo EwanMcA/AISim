@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BOARD_H
+#define BOARD_H
 
 #include "pch.h"
 
@@ -125,3 +126,4 @@ private:
 #endif
 };
 
+#endif // BOARD_H

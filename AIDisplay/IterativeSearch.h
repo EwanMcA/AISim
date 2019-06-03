@@ -1,4 +1,6 @@
-#pragma once
+#ifndef ITERATIVE_SEARCH_H
+#define ITERATIVE_SEARCH_H
+
 #include "Algorithm.h"
 
 class NodePriority
@@ -52,3 +54,4 @@ private:
     
 };
 
+#endif // ITERATIVE_SEARCH_H
