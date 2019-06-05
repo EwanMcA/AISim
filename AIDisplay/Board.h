@@ -93,10 +93,9 @@ private:
     // Pushes display row onto given stringstream
     void row_stream(std::stringstream& ss, std::vector<char> row);
 
-    // Sets the start position of the board (defaults to {0, 0})
-    void set_start();
-    // Sets the end position of the board (defaults to {board.size(), board.size()})
-    void set_end();
+    // Sets the start and end positions of the board 
+    // (start defaults to {0, 0}, end defaults to {board.size(), board.size()})
+    void set_endpoints();
 
     static const char BOARD_DELIM = '|';
     static const char BOARD_DISCOVERED = '*';

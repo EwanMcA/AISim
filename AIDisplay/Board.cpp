@@ -25,28 +25,21 @@ bool Board::load(const char* fn)
         return false;
     }
 
-    set_start();
-    set_end();
+    set_endpoints();
     return true;
 }
 
-void Board::set_end()
+void Board::set_endpoints()
 {
-    for (int i = 0; i < vertices.size(); ++i) {
-        for (int j = 0; j < vertices[i].size(); ++j) {
-            if (vertices[i][j] == BOARD_END) {
-                end = { i, j };
-            }
-        }
-    }
-}
-
-void Board::set_start() 
-{
+    start = { 0, 0 };
+    end = { vertices.size(), vertices[0].size() };
     for (int i = 0; i < vertices.size(); ++i) {
         for (int j = 0; j < vertices[i].size(); ++j) {
             if (vertices[i][j] == BOARD_START) {
                 start = { i, j };
+            } 
+            else if (vertices[i][j] == BOARD_END) {
+                end = { i, j };
             }
         }
     }
